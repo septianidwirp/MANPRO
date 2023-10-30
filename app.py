@@ -1,25 +1,30 @@
 from flask import Flask
+# coding=utf-8
+import os
+import numpy as np
 
-app=Flask(__name__)
+# Keras
+#from keras.models import load_model
+#from keras.utils import img_to_array
+#from keras.utils import load_img
 
-@app.route("/")
+# Flask utils
+from flask import Flask, request, render_template
+#from werkzeug.utils import secure_filename
+
+# Mendefinisikan App Flask
+app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
+
+@app.route('/', methods=['GET'])
 def index():
-    return "halo berhasil nich"
-    
-@app.route("/about")
-def about():
-    return "About Us"
+    # Halaman Utama
+    return render_template('index.html')
 
-@app.route("/contact")
-def contact():
-    return "Contact Us"
+@app.route('/login')
+def login():
+    return render_template('login.html')
 
-@app.route("/profile")
-def profile():
-    return "Profile"
-
-@app.route("/profile/<username>")
-def profile_name(username):
-    return "halo %s" % username
-
-app.run(debug=True)
+@app.route('/register')
+def register():
+    return render_template('register.html')

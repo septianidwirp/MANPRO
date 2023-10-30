@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ url_for('static', filename='css/log-reg.css') }}" rel="stylesheet"/>
+    <title>Sign In | Prediksi Stunting</title>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="inner-box" id="card">
+                <div class="card-front">
+                    <h1><b>Sign In</b></h1>
+                    <form>
+                        <input type="username" class="input-box" placeholder="Username" required>
+                        <input type="password" class="input-box" placeholder="Password" required>
+                        <a href="{{ url_for('index') }}" class="btn btn-primary rounded-5 px-5 fw-bold " style="color: white;">Login</a>
+                    </form>
+                    <p class="sign-up-paragraph">
+                      <p class="sign-up-text">Don't have an account? <a href="{{ url_for('register') }}" class="sign-up-link">Sign Up</a></p>
+                    </p>
+                  
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
