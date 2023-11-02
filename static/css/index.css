@@ -266,5 +266,36 @@
     letter-spacing: 0;
     text-transform: none;
   }
-
-
+  .scrollspy-example {
+    background: #0FA9FF;
+  }
+  .nav-brand .collapse.navbar-collapse .nav-link.text,
+  .collapse.navbar-collapse .btn.btn {
+    color: #0FA9FF;
+  }
+  .btn.rounded {
+    border-radius: 15px; /* Sesuaikan dengan tingkat kebulatan yang diinginkan */
+  }
+  
+  .navbar-brand .img-main {
+    color: #0FA9FF;
+  }
+  #userNav .btn {
+    background-color: #0FA9FF;
+    color: white;
+  }
+/* Gaya tombol saat tidak diklik */
+.btn.btn-light.text.py-2.px-4.rounded {
+    background-color: white; 
+    color: #0FA9FF;
+    transition: background-color 0.2s, color 0.2s; /* Transisi perubahan warna */
+  }
+  
+  /* Gaya tombol saat dihover */
+  .btn.btn-light.text.py-2.px-4.rounded:hover {
+    background-color: white; 
+    color: #0FA9FF;
+  }
+  
+    
+  
