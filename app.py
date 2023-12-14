@@ -29,6 +29,14 @@ def login():
 def register():
     return render_template('register.html')
 
+@app.route('/diagnosa')
+def diagnosa():
+    return render_template('diagnosa.html')
+
+@app.route('/profil')
+def profil():
+    return render_template('profil.html')
+
 @app.route('/riwayat')
 def riwayat():
     return render_template('riwayat.html')
