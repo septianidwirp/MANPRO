@@ -21,7 +21,7 @@ body {
 
 table {
     border-collapse: collapse;
-    width: 65%;
+    width: 100%;
     margin: auto;
 }
 
@@ -54,60 +54,50 @@ tbody tr:nth-child(odd) {
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
                     <li class="nav-item mx-3">
-                        <a class="nav-link text-primary" href="#about">Home</a>
+                        <a class="nav-link text-primary" href="{{ url_for('diagnosis') }}">Diagnosis</a>
                     </li>
                     <li class="nav-item mx-3">
-                        <a class="nav-link text-primary" href="#service">Diagnosa</a>
-                    </li>
-                    <li class="nav-item mx-3">
-                        <a class="nav-link text-primary" href="#contact">Riwayat</a>
+                        <a class="nav-link text-primary" href="{{ url_for('riwayat') }}">Riwayat</a>
                     </li>
                 </ul>
                 <form class="d-flex" role="search" id="userNav">
-                  <a href="{{ url_for('login') }}" class="btn btn fw-semibold rounded px-4 me-2">User</a>
+                  <a href="{{ url_for('profil') }}" class="btn btn fw-semibold rounded px-4 me-2">Profile</a>
                 </form>
             </div>
         </div>
     </nav>
-<div  style="padding-top: 150px; ">
+<div class="container" style="padding-top: 150px;">
+ <div class="card border-0">
+    <div class="card-header bg-primary">
+        {% if session['name'] %}
+            <h4 class="text-white">Riwayat {{ session['name'] }}</h4>
+        {% else %}
+            <h4 class="text-white">Riwayat</h4>
+        {% endif %}
+    </div>
+    <div class="card-body">
     <table style=" ">
         <thead>
             <tr>
                 <th>Tanggal</th>
                 <th>Nama</th>
-                <th>Usia</th>
+                <th>Usia (Bulan)</th>
                 <th>Hasil</th>
             </tr>
         </thead>
         <tbody>
-            <!-- Data pasien dimasukkan di sini -->
-            <tr>
-                <td>2023-01-01</td>
-                <td>John Doe</td>
-                <td>25</td>
-                <td style="color: rgb(0, 255, 42); ">Sehat</td>
-            </tr>
-            <tr>
-                <td>2023-01-01</td>
-                <td>John Doe</td>
-                <td>25</td>
-                <td style="color: rgb(0, 255, 42); ">Sehat</td>
-            </tr>
-            <tr>
-                <td>2023-01-02</td>
-                <td>Jane Doe</td>
-                <td>30</td>
-                <td style="color: red; ">Stunting</td>
-            </tr>
-            <tr>
-                <td>2023-01-02</td>
-                <td>Jane Doe</td>
-                <td>30</td>
-                <td style="color: red; ">Stunting</td>
-            </tr>
-            <!-- Tambahkan baris lain sesuai dengan kebutuhan -->
+            {% for record in history_data %}
+                    <tr>
+                        <td>{{ record.time }}</td>
+                        <td>{{ session.name }}</td>
+                        <td>{{ record.usia }}</td>
+                        <td style="color: {{ 'rgb(0, 255, 42)' if record.diagnosis == 'Tidak Stunting' else 'red' }};">{{ record.diagnosis }}</td>
+                    </tr>
+                {% endfor %}
         </tbody>
     </table>
+</div>
+</div>
 </div>
 </body>
 </html>

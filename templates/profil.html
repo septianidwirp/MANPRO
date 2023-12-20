@@ -31,58 +31,55 @@ body {
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
                     <li class="nav-item mx-3">
-                        <a class="nav-link text-primary" href="{{ url_for('diagnosa') }}">Home</a>
-                    </li>
-                    <li class="nav-item mx-3">
-                        <a class="nav-link text-primary" href="{{ url_for('diagnosa') }}">Diagnosa</a>
+                        <a class="nav-link text-primary" href="{{ url_for('diagnosis') }}">Diagnosis</a>
                     </li>
                     <li class="nav-item mx-3">
                         <a class="nav-link text-primary" href="{{ url_for('riwayat') }}">Riwayat</a>
                     </li>
                 </ul>
                 <form class="d-flex" role="search" id="userNav">
-                  <a href="#" class="btn btn fw-semisemibold rounded px-4 me-2">User</a>
+                    <a href="{{ url_for('login') }}" class="btn btn fw-semibold rounded px-4 me-2">Logout</a>
                 </form>
             </div>
         </div>
     </nav>
-<div class="container" style="padding-top: 150px; ">
-    <div class="card border-0">
-        <div class="card-header bg-primary">
-            <h4 class="text-white">Profile</h4>
-        </div>
-        <div class="card-body">
-            <form>
-                <div class="row g-3">
-                    <div class="col">
-                        <div class="mb-3">
-                            <label for="NamaInput" class="form-label fw-semibold">Nama</label>
-                            <input type="text" id="NamaInput" class="form-control" placeholder="Nama">
+    <div class="container" style="padding-top: 150px;">
+        <div class="card border-0">
+            <div class="card-header bg-primary">
+                {% if session['name'] %}
+                    <h4 class="text-white">Profile {{ session['name'] }}</h4>
+                {% else %}
+                    <h4 class="text-white">Profile</h4>
+                {% endif %}
+            </div>
+            <div class="card-body">
+                <form method="post" action="{{ url_for('update_profile') }}">
+                    <div class="row g-3">
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="EmailInput" class="form-label fw-semibold">Email</label>
+                                <input type="text" class="form-control" value="{{ session['email'] }}" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label for="NamaInput" class="form-label fw-semibold">Nama</label>
+                                <input type="text" name="new_name" class="form-control" placeholder="Nama">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Update</button>
                         </div>
-                        <div class="mb-3">
-                            <label for="EmailInput" class="form-label fw-semibold">Email</label>
-                            <input type="text" id="EmailInput" class="form-control" placeholder="user@gmail.com">
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="OldPasswordInput" class="form-label fw-semibold">Old Password</label>
+                                <input type="password" name="old_password" class="form-control" placeholder="Old Password">
+                            </div>
+                            <div class="mb-3">
+                                <label for="NewPasswordInput" class="form-label fw-semibold">New Password</label>
+                                <input type="password" name="new_password" class="form-control" placeholder="New Password">
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label for="PasswordInput" class="form-label fw-semibold">Repeat Password</label>
-                            <input type="text" id="PasswordInput" class="form-control" placeholder="Isi Disini...">
-                        </div>
-                        <button type="update" class="btn btn-primary">Update</button>
                     </div>
-                    <div class="col">
-                        <div class="mb-3">
-                            <label for="UsernameInput" class="form-label fw-semibold">Username</label>
-                            <input type="text" id="PasswordInput" class="form-control" placeholder="username">
-                        </div>
-                        <div class="mb-3">
-                            <label for="PasswordInput" class="form-label fw-semibold">Password</label>
-                            <input type="text" id="PasswordInput" class="form-control" placeholder="Isi Disini...">
-                        </div>
-                    </div>
-                </div>
-              </form>
+                </form>
+            </div>
         </div>
-      </div>
-</div>
+    </div>
 </body>
 </html>
